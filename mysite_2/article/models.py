@@ -33,7 +33,9 @@ class ArticlePost(models.Model):
     article_tag = models.ManyToManyField(ArticleTag, related_name='article_tag', blank=True)
     class Meta:
         ordering = ("-updated",) 
-        index_together = (('id', 'slug'),)
+        indexes = [
+            models.Index(fields = ('id', 'slug'),)
+        ]
         
     def __str__(self): 
         return self.title
